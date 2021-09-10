@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'responsive_helper.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -13,26 +14,22 @@ class _HomePageState extends State<HomePage> {
         title: Text("Responsive page"),
       ),
       body: SafeArea(
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            //Potrait
-            if (constraints.maxWidth < 768) {
-              return Column(
-                children: [
-                  buildBannerSlider(),
-                  buildTitleText(),
-                ],
-              );
-              //Landscape
-            } else {
-              return Row(
-                children: [
-                  buildBannerSlider(),
-                  Expanded(child: buildTitleText()),
-                ],
-              );
-            }
-          },
+        child: ResponsiveWidget(
+          mobile: Column(
+            children: [
+              buildBannerSlider(),
+              buildTitleText(),
+            ],
+          ),
+          tab: Row(
+            children: [
+              buildBannerSlider(),
+              SizedBox(
+                width: 24,
+              ),
+              Expanded(child: buildTitleText()),
+            ],
+          ),
         ),
       ),
     );
