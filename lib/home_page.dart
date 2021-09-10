@@ -15,45 +15,43 @@ class _HomePageState extends State<HomePage> {
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
+            //Potrait
             if (constraints.maxWidth < 768) {
               return Column(
                 children: [
-                  Container(
-                    width: 320,
-                    height: 180,
-                    decoration: BoxDecoration(
-                      gradient:
-                          LinearGradient(colors: [Colors.red, Colors.pink]),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  Text(
-                    'Hey there, 👋\n\nCodex is an ecosystem of practical resource for deverlopers who want to \nbuild high-quality mobile apps.🚪 ',
-                    style: TextStyle(fontSize: 22),
-                  )
+                  buildBannerSlider(),
+                  buildTitleText(),
                 ],
               );
+              //Landscape
             } else {
               return Row(
                 children: [
-                  Container(
-                    width: 320,
-                    height: 180,
-                    decoration: BoxDecoration(
-                      gradient:
-                          LinearGradient(colors: [Colors.red, Colors.pink]),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  Text(
-                    'Hey there, 👋\n\nCodex is an ecosystem of practical resource for deverlopers who want to \nbuild high-quality mobile apps.🚪 ',
-                    style: TextStyle(fontSize: 22),
-                  )
+                  buildBannerSlider(),
+                  Expanded(child: buildTitleText()),
                 ],
               );
             }
           },
         ),
+      ),
+    );
+  }
+
+  Text buildTitleText() {
+    return Text(
+      'Hey there, 👋\n\nCodex is an ecosystem of practical resource for deverlopers who want to \nbuild high-quality mobile apps.🚪 ',
+      style: TextStyle(fontSize: 22),
+    );
+  }
+
+  Container buildBannerSlider() {
+    return Container(
+      width: 320,
+      height: 180,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(colors: [Colors.red, Colors.pink]),
+        borderRadius: BorderRadius.circular(12),
       ),
     );
   }
